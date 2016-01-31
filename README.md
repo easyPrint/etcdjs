@@ -32,7 +32,7 @@ var store = etcdjs('https://127.0.0.1:4001', {
     cert: fs.readFileSync('path/to/client.cert'),
     key: fs.readFileSync('path/to/client.key'),
     passphrase: 'password',
-    ca: fs.readFileSync('path/co/ca.cert.pem')
+    ca: fs.readFileSync('path/to/ca.cert.pem')
   }
 });
 ```
