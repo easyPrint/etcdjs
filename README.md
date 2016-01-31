@@ -63,7 +63,7 @@ add more machines to your cluster without updating your seed host list.
   refresh: false,        // refresh the interval host list automatically
   timeout: 60 * 1000,    // default timeout for ops
   json: false,           // stringify/parse all values as JSON
-  ssl: null              // TLS/SSL options for [request](https://www.npmjs.com/package/request#tlsssl-protocol) library
+  ssl: null              // TLS/SSL options. see https://www.npmjs.com/package/request#tlsssl-protocol
 }
 ```
 
