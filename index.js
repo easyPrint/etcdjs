@@ -53,6 +53,7 @@ var Client = function (host, opts) {
   this._interval = null
   this._destroyed = false
   this._wait = null
+  this._ssl = opts.ssl || null
 
   this.stats = new Stats(this)
   if (this._refresh) this.autoRefresh()
@@ -344,6 +345,15 @@ Client.prototype._request2 = function (opts, cb) {
   var path = opts.uri[0] === '/' && opts.uri
   if (path) opts.uri = this._next() + path
   opts.timeout = this._timeout
+
+  // merge SSL options
+  if (this._ssl) {
+    for (var key in this._ssl) {
+      if (this._ssl.hasOwnProperty(key)) {
+        opts[key] = opts[key] || this._ssl[key];
+      }
+    }
+  }
 
   var canceled = false
 

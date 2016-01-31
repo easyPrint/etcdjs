@@ -21,6 +21,22 @@ store.set('hello', 'world', function(err, result) {
 })
 ```
 
+If your etcd cluster is secured using TLS, you can pass TLS/SSL options as part of the options hash:
+
+```js
+var fs = require('fs');
+var etcdjs = require('etcdjs');
+
+var store = etcdjs('https://127.0.0.1:4001', {
+  ssl: {
+    cert: fs.readFileSync('path/to/client.cert'),
+    key: fs.readFileSync('path/to/client.key'),
+    passphrase: 'password',
+    ca: fs.readFileSync('path/co/ca.cert.pem')
+  }
+});
+```
+
 If you have more than run instance of etcd running you can pass an array to load balance
 
 ``` js
@@ -46,7 +62,8 @@ add more machines to your cluster without updating your seed host list.
 {
   refresh: false,        // refresh the interval host list automatically
   timeout: 60 * 1000,    // default timeout for ops
-  json: false            // stringify/parse all values as JSON
+  json: false,           // stringify/parse all values as JSON
+  ssl: null              // TLS/SSL options for [request](https://www.npmjs.com/package/request#tlsssl-protocol) library
 }
 ```
 
